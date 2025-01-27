@@ -9,19 +9,22 @@ using System.Text;
 
 namespace QuerySharp.Services.Expressions
 {
-    internal class ExpressionService : ExpressionVisitor, IExpressionService
+    internal partial class ExpressionService : ExpressionVisitor, IExpressionService
     {
         private readonly StringBuilder queryBuilder;
 
         public ExpressionService() =>
             queryBuilder = new StringBuilder();
 
-        public string TranslateExpression(Expression expression)
+        public string TranslateExpression(Expression expression) =>
+        TryCatch(() =>
         {
+            ValidateExpression(expression);
+
             Visit(expression);
 
             return queryBuilder.ToString().Trim();
-        }
+        });
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
