@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySharp", "QuerySharp\QuerySharp.csproj", "{D6CA425A-4216-4240-AB85-7BAE7F14C1C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySharp.Tests.Unit", "QuerySharp.Tests.Unit\QuerySharp.Tests.Unit.csproj", "{50820B1C-8908-45BF-A503-204FED511DE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySharp.Infrastructure.Build", "QuerySharp.Infrastructure.Build\QuerySharp.Infrastructure.Build.csproj", "{853AD4CB-75C7-4536-ACDA-9C29F45540B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySharp.Tests.Manual", "QuerySharp.Tests.Manual\QuerySharp.Tests.Manual.csproj", "{FCA2898F-0356-4F4A-BC29-53AB7E5D073A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6CA425A-4216-4240-AB85-7BAE7F14C1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CA425A-4216-4240-AB85-7BAE7F14C1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CA425A-4216-4240-AB85-7BAE7F14C1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CA425A-4216-4240-AB85-7BAE7F14C1C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50820B1C-8908-45BF-A503-204FED511DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50820B1C-8908-45BF-A503-204FED511DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50820B1C-8908-45BF-A503-204FED511DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50820B1C-8908-45BF-A503-204FED511DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{853AD4CB-75C7-4536-ACDA-9C29F45540B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{853AD4CB-75C7-4536-ACDA-9C29F45540B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{853AD4CB-75C7-4536-ACDA-9C29F45540B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{853AD4CB-75C7-4536-ACDA-9C29F45540B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA2898F-0356-4F4A-BC29-53AB7E5D073A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA2898F-0356-4F4A-BC29-53AB7E5D073A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA2898F-0356-4F4A-BC29-53AB7E5D073A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA2898F-0356-4F4A-BC29-53AB7E5D073A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
