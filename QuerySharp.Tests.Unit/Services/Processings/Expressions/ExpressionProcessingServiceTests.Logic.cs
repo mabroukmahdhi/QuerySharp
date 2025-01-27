@@ -122,5 +122,31 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             this.expressionServiceMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldAddTranslatedExpressionToExpands()
+        {
+            // given
+            Expression<Func<int, object>> navigationProperty = x => x;
+            string translatedTranslation = "x";
+            string expectedTranslation = "$expand=x";
+
+            expressionServiceMock.Setup(service =>
+                service.TranslateExpression(navigationProperty))
+                    .Returns(translatedTranslation);
+
+            // when
+            this.expressionProcessingService.Expand(navigationProperty);
+
+            // then
+            string query = this.expressionProcessingService.BuildQuery();
+            query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.Verify(service =>
+                service.TranslateExpression(navigationProperty),
+                    Times.Once);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
     }
 }
