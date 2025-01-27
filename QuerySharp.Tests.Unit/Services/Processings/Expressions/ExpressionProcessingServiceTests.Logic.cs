@@ -5,6 +5,7 @@
 using System;
 using System.Linq.Expressions;
 using FluentAssertions;
+using Moq;
 
 namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 {
@@ -28,6 +29,38 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.Verify(service =>
+                service.TranslateExpression(predicate.Body),
+                    Times.Once);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public void ShouldAddTranslatedExpressionToOrderBy()
+        {
+            // given
+            Expression<Func<int, object>> keySelector = x => x;
+            string translatedTranslation = "x";
+            string expectedTranslation = "$orderby=x asc";
+
+            expressionServiceMock.Setup(service =>
+                service.TranslateExpression(keySelector.Body))
+                    .Returns(translatedTranslation);
+
+            // when
+            this.expressionProcessingService.AddOrderBy(keySelector);
+
+            // then
+            string query = this.expressionProcessingService.BuildQuery();
+            query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.Verify(service =>
+                service.TranslateExpression(keySelector.Body),
+                    Times.Once);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
         }
     }
 }
