@@ -105,5 +105,22 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             this.expressionServiceMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldAddSkipClauseToQuery()
+        {
+            // given
+            int skipValue = 10;
+            string expectedTranslation = "$skip=10";
+
+            // when
+            this.expressionProcessingService.AddSkip(skipValue);
+
+            // then
+            string query = this.expressionProcessingService.BuildQuery();
+            query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
     }
 }
