@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-using QuerySharp.Services.Expressions;
+using QuerySharp.Services.Foundations.Expressions;
 
 namespace QuerySharp
 {

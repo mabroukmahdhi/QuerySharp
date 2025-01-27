@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using QuerySharp.Services.Expressions;
+using QuerySharp.Services.Foundations.Expressions;
 
 namespace QuerySharp.Tests.Unit.Services.Expressions
 {

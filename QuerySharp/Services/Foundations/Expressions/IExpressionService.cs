@@ -4,7 +4,7 @@
 
 using System.Linq.Expressions;
 
-namespace QuerySharp.Services.Expressions
+namespace QuerySharp.Services.Foundations.Expressions
 {
     internal interface IExpressionService
     {

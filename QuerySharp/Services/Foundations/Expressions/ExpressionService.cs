@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using QuerySharp.Services.Foundations.Expressions;
 
 namespace QuerySharp.Services.Expressions
 {
