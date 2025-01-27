@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace QuerySharp.Services.Foundations.Expressions
+namespace QuerySharp.Services.Expressions
 {
     internal class ExpressionService : ExpressionVisitor, IExpressionService
     {
