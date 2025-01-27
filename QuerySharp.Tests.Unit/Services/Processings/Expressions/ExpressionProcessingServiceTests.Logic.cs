@@ -62,5 +62,31 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             this.expressionServiceMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldAddTranslatedExpressionToOrderByDescending()
+        {
+            // given
+            Expression<Func<int, object>> keySelector = x => x;
+            string translatedTranslation = "x";
+            string expectedTranslation = "$orderby=x desc";
+
+            expressionServiceMock.Setup(service =>
+                service.TranslateExpression(keySelector.Body))
+                    .Returns(translatedTranslation);
+
+            // when
+            this.expressionProcessingService.AddOrderByDescending(keySelector);
+
+            // then
+            string query = this.expressionProcessingService.BuildQuery();
+            query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.Verify(service =>
+                service.TranslateExpression(keySelector.Body),
+                    Times.Once);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
     }
 }
