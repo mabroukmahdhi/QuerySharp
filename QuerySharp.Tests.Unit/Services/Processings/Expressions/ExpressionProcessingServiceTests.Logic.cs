@@ -148,5 +148,40 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             this.expressionServiceMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldBuildCompleteQueryString()
+        {
+            // given
+            Expression<Func<int, bool>> filter = x => x > 10;
+            Expression<Func<int, object>> orderBy = x => x;
+            Expression<Func<int, object>> expand = x => x;
+
+            string expectedQuery = "$filter=x gt 10&$orderby=x asc";
+
+            expressionServiceMock.Setup(service =>
+                service.TranslateExpression(filter.Body))
+                    .Returns("x gt 10");
+
+            expressionServiceMock.Setup(service =>
+                service.TranslateExpression(orderBy.Body))
+                    .Returns("x");
+
+            this.expressionProcessingService.AddFilter(filter)
+                .AddOrderBy(orderBy);
+
+            // when
+            string actualQuery =
+                this.expressionProcessingService.BuildQuery();
+
+            // then
+            actualQuery.Should().Be(expectedQuery);
+
+            this.expressionServiceMock.Verify(service =>
+                service.TranslateExpression(It.IsAny<Expression>()),
+                    Times.Exactly(2));
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
     }
 }
