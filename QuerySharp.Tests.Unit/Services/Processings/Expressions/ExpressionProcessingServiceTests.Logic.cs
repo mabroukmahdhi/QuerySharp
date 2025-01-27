@@ -88,5 +88,22 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             this.expressionServiceMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldAddTopClauseToQuery()
+        {
+            // given
+            int topValue = 5;
+            string expectedTranslation = "$top=5";
+
+            // when
+            this.expressionProcessingService.AddTop(topValue);
+
+            // then
+            string query = this.expressionProcessingService.BuildQuery();
+            query.Should().Be(expectedTranslation);
+
+            this.expressionServiceMock.VerifyNoOtherCalls();
+        }
     }
 }
