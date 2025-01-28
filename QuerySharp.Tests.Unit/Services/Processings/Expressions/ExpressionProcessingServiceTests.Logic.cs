@@ -46,9 +46,8 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
         public void ShouldAddTranslatedExpressionToOrderByDescending()
         {
             // given
-            Expression<Func<int, object>> keySelector = x => x;
-            string translatedTranslation = "x";
-            string expectedTranslation = "$orderby=x desc";
+            Expression<Func<SomeModel, object>> keySelector = x => x.Name;
+            string expectedTranslation = "$orderby=Name desc";
 
             // when
             this.expressionProcessingService.AddOrderByDescending(keySelector);
