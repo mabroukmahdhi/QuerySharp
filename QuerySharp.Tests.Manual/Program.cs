@@ -16,8 +16,6 @@ namespace QuerySharp.Tests.Manual
                 .Build();
 
             Console.WriteLine(query);
-            // Output: "$filter=Price gt 50 and contains(Name, 'Laptop') and Image/Format eq 'png'&$expand=Reviews($filter=Rating gt 4)"
-            //$filter=(((Price gt 50) and contains(Name,'Laptop')) and (Image/Format eq 'png'))&$expand=(Reviews($filter=(Rating gt 4))
         }
     }
 }
