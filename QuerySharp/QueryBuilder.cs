@@ -8,12 +8,20 @@ using QuerySharp.Services.Processings.Expressions;
 
 namespace QuerySharp
 {
-    public sealed class QueryBuilder<T>
+    public sealed partial class QueryBuilder<T>
     {
-        private readonly IExpressionProcessingService expressionProcessingService;
+        private IExpressionProcessingService expressionProcessingService;
 
-        internal QueryBuilder(IExpressionProcessingService expressionProcessingService) =>
-            this.expressionProcessingService = expressionProcessingService;
+        internal QueryBuilder()
+        {
+            IServiceProvider serviceProvider =
+                RegisterServices();
+
+            Initialize(serviceProvider);
+        }
+
+        public static QueryBuilder<T> Start() =>
+            new QueryBuilder<T>();
 
         public QueryBuilder<T> Filter(Expression<Func<T, bool>> predicate)
         {
