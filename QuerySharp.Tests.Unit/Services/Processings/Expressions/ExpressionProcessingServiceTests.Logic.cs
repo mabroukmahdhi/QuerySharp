@@ -15,8 +15,8 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
         public void ShouldAddTranslatedExpressionToFilters()
         {
             // given
-            Expression<Func<int, bool>> predicate = x => x > 10;
-            string translatedTranslation = "x gt 10";
+            Expression<Func<SomeModel, bool>> predicate = x => x.Id > 10;
+            string translatedTranslation = "Id gt 10";
             string expectedTranslation = $"$filter={translatedTranslation}";
 
             // when
