@@ -100,6 +100,7 @@ namespace QuerySharp
         /// <param name="navigationProperty">The navigation property expression to expand.</param>
         /// <returns>The current instance of <see cref="QueryBuilder{T}"/></returns>
         public QueryBuilder<T> Expand<TProperty>(Expression<Func<T, TProperty>> navigationProperty)
+            where TProperty : class
         {
             this.expressionProcessingService.Expand(navigationProperty);
 

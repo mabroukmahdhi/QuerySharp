@@ -2,13 +2,11 @@
 // Copyright (c) Mabrouk Mahdhi 2024. All rights reserved.
 // ---------------------------------------------------------------
 
-namespace QuerySharp.Tests.Unit.Models
+namespace QuerySharp.Tests.Manual.Models.Products
 {
-    internal class SomeModel
+    internal class Review
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-
-        public virtual SomeModel Parent { get; set; }
+        public decimal Rating { get; set; }
     }
 }

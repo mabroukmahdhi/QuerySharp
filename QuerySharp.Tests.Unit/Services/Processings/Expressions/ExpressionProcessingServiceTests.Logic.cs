@@ -5,7 +5,7 @@
 using System;
 using System.Linq.Expressions;
 using FluentAssertions;
-using Moq;
+using QuerySharp.Tests.Unit.Models;
 
 namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 {
@@ -19,22 +19,12 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             string translatedTranslation = "x gt 10";
             string expectedTranslation = $"$filter={translatedTranslation}";
 
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(predicate.Body))
-                    .Returns(translatedTranslation);
-
             // when
             this.expressionProcessingService.AddFilter(predicate);
 
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.Verify(service =>
-                service.TranslateExpression(predicate.Body),
-                    Times.Once);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -45,22 +35,12 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             string translatedTranslation = "x";
             string expectedTranslation = "$orderby=x asc";
 
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(keySelector.Body))
-                    .Returns(translatedTranslation);
-
             // when
             this.expressionProcessingService.AddOrderBy(keySelector);
 
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.Verify(service =>
-                service.TranslateExpression(keySelector.Body),
-                    Times.Once);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -71,22 +51,12 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             string translatedTranslation = "x";
             string expectedTranslation = "$orderby=x desc";
 
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(keySelector.Body))
-                    .Returns(translatedTranslation);
-
             // when
             this.expressionProcessingService.AddOrderByDescending(keySelector);
 
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.Verify(service =>
-                service.TranslateExpression(keySelector.Body),
-                    Times.Once);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -102,8 +72,6 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -119,21 +87,14 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
         public void ShouldAddTranslatedExpressionToExpands()
         {
             // given
-            Expression<Func<int, object>> navigationProperty = x => x;
-            string translatedTranslation = "x";
-            string expectedTranslation = "$expand=x";
-
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(navigationProperty))
-                    .Returns(translatedTranslation);
+            Expression<Func<SomeModel, bool>> navigationProperty = x => x.Parent.Id == 5;
+            string expectedTranslation = "$expand=Parent/Id eq 5";
 
             // when
             this.expressionProcessingService.Expand(navigationProperty);
@@ -141,12 +102,6 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             // then
             string query = this.expressionProcessingService.BuildQuery();
             query.Should().Be(expectedTranslation);
-
-            this.expressionServiceMock.Verify(service =>
-                service.TranslateExpression(navigationProperty),
-                    Times.Once);
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -159,14 +114,6 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             string expectedQuery = "$filter=x gt 10&$orderby=x asc";
 
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(filter.Body))
-                    .Returns("x gt 10");
-
-            expressionServiceMock.Setup(service =>
-                service.TranslateExpression(orderBy.Body))
-                    .Returns("x");
-
             this.expressionProcessingService.AddFilter(filter);
             this.expressionProcessingService.AddOrderBy(orderBy);
 
@@ -176,12 +123,6 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
 
             // then
             actualQuery.Should().Be(expectedQuery);
-
-            this.expressionServiceMock.Verify(service =>
-                service.TranslateExpression(It.IsAny<Expression>()),
-                    Times.Exactly(2));
-
-            this.expressionServiceMock.VerifyNoOtherCalls();
         }
     }
 }

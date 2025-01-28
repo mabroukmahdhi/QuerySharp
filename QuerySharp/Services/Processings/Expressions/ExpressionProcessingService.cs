@@ -6,22 +6,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-using QuerySharp.Services.Foundations.Expressions;
+using QuerySharp.Services.Expressions;
 
 namespace QuerySharp.Services.Processings.Expressions
 {
     internal class ExpressionProcessingService : IExpressionProcessingService
     {
-        private readonly IExpressionService expressionService;
         private readonly List<string> filters;
         private readonly List<string> expands;
         private readonly List<string> orderBys;
         private int? top;
         private int? skip;
 
-        internal ExpressionProcessingService(IExpressionService expressionService)
+        public ExpressionProcessingService()
         {
-            this.expressionService = expressionService;
             this.filters = new List<string>();
             this.expands = new List<string>();
             this.orderBys = new List<string>();
@@ -31,16 +29,20 @@ namespace QuerySharp.Services.Processings.Expressions
 
         public void AddFilter<T>(Expression<Func<T, bool>> predicate)
         {
+            var expressionService = new ExpressionService();
+
             string translatedExpression =
-                this.expressionService.TranslateExpression(predicate.Body);
+                expressionService.TranslateExpression(predicate.Body);
 
             this.filters.Add(translatedExpression);
         }
 
         public void AddOrderBy<T>(Expression<Func<T, object>> keySelector)
         {
+            var expressionService = new ExpressionService();
+
             string translatedExpression =
-                this.expressionService.TranslateExpression(keySelector.Body);
+                expressionService.TranslateExpression(keySelector.Body);
 
             string orderedExpression = $"{translatedExpression} asc";
 
@@ -49,8 +51,10 @@ namespace QuerySharp.Services.Processings.Expressions
 
         public void AddOrderByDescending<T>(Expression<Func<T, object>> keySelector)
         {
+            var expressionService = new ExpressionService();
+
             string translatedExpression =
-                this.expressionService.TranslateExpression(keySelector.Body);
+                expressionService.TranslateExpression(keySelector.Body);
 
             string orderedExpression = $"{translatedExpression} desc";
 
@@ -69,8 +73,10 @@ namespace QuerySharp.Services.Processings.Expressions
 
         public void Expand<T, TProperty>(Expression<Func<T, TProperty>> navigationProperty)
         {
+            var expressionService = new ExpressionService();
+
             string translatedExpression =
-                this.expressionService.TranslateExpression(navigationProperty);
+                expressionService.TranslateExpression(navigationProperty);
 
             this.expands.Add(translatedExpression);
         }
