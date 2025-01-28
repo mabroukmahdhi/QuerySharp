@@ -9,12 +9,12 @@ namespace QuerySharp.Services.Processings.Expressions
 {
     internal interface IExpressionProcessingService
     {
-        IExpressionProcessingService AddFilter<T>(Expression<Func<T, bool>> predicate);
-        IExpressionProcessingService AddOrderBy<T>(Expression<Func<T, object>> keySelector);
-        IExpressionProcessingService AddOrderByDescending<T>(Expression<Func<T, object>> keySelector);
-        IExpressionProcessingService AddTop(int count);
-        IExpressionProcessingService AddSkip(int count);
-        IExpressionProcessingService Expand<T, TProperty>(Expression<Func<T, TProperty>> navigationProperty);
+        void AddFilter<T>(Expression<Func<T, bool>> predicate);
+        void AddOrderBy<T>(Expression<Func<T, object>> keySelector);
+        void AddOrderByDescending<T>(Expression<Func<T, object>> keySelector);
+        void AddTop(int count);
+        void AddSkip(int count);
+        void Expand<T, TProperty>(Expression<Func<T, TProperty>> navigationProperty);
         string BuildQuery();
     }
 }

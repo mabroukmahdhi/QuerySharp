@@ -167,8 +167,8 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
                 service.TranslateExpression(orderBy.Body))
                     .Returns("x");
 
-            this.expressionProcessingService.AddFilter(filter)
-                .AddOrderBy(orderBy);
+            this.expressionProcessingService.AddFilter(filter);
+            this.expressionProcessingService.AddOrderBy(orderBy);
 
             // when
             string actualQuery =

@@ -29,17 +29,15 @@ namespace QuerySharp.Services.Processings.Expressions
             this.skip = null;
         }
 
-        public IExpressionProcessingService AddFilter<T>(Expression<Func<T, bool>> predicate)
+        public void AddFilter<T>(Expression<Func<T, bool>> predicate)
         {
             string translatedExpression =
                 this.expressionService.TranslateExpression(predicate.Body);
 
             this.filters.Add(translatedExpression);
-
-            return this;
         }
 
-        public IExpressionProcessingService AddOrderBy<T>(Expression<Func<T, object>> keySelector)
+        public void AddOrderBy<T>(Expression<Func<T, object>> keySelector)
         {
             string translatedExpression =
                 this.expressionService.TranslateExpression(keySelector.Body);
@@ -47,11 +45,9 @@ namespace QuerySharp.Services.Processings.Expressions
             string orderedExpression = $"{translatedExpression} asc";
 
             this.orderBys.Add(orderedExpression);
-
-            return this;
         }
 
-        public IExpressionProcessingService AddOrderByDescending<T>(Expression<Func<T, object>> keySelector)
+        public void AddOrderByDescending<T>(Expression<Func<T, object>> keySelector)
         {
             string translatedExpression =
                 this.expressionService.TranslateExpression(keySelector.Body);
@@ -59,32 +55,24 @@ namespace QuerySharp.Services.Processings.Expressions
             string orderedExpression = $"{translatedExpression} desc";
 
             this.orderBys.Add(orderedExpression);
-
-            return this;
         }
 
-        public IExpressionProcessingService AddTop(int count)
+        public void AddTop(int count)
         {
             this.top = count;
-
-            return this;
         }
 
-        public IExpressionProcessingService AddSkip(int count)
+        public void AddSkip(int count)
         {
             this.skip = count;
-
-            return this;
         }
 
-        public IExpressionProcessingService Expand<T, TProperty>(Expression<Func<T, TProperty>> navigationProperty)
+        public void Expand<T, TProperty>(Expression<Func<T, TProperty>> navigationProperty)
         {
             string translatedExpression =
                 this.expressionService.TranslateExpression(navigationProperty);
 
             this.expands.Add(translatedExpression);
-
-            return this;
         }
 
         public string BuildQuery()
