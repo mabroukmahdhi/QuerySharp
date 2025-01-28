@@ -108,11 +108,11 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
         public void ShouldBuildCompleteQueryString()
         {
             // given
-            Expression<Func<int, bool>> filter = x => x > 10;
-            Expression<Func<int, object>> orderBy = x => x;
-            Expression<Func<int, object>> expand = x => x;
+            Expression<Func<SomeModel, bool>> filter = x => x.Id > 10;
+            Expression<Func<SomeModel, object>> orderBy = x => x.Name;
+            Expression<Func<SomeModel, SomeModel>> expand = x => x.Parent;
 
-            string expectedQuery = "$filter=x gt 10&$orderby=x asc";
+            string expectedQuery = "$filter=Id gt 10&$orderby=Name asc";
 
             this.expressionProcessingService.AddFilter(filter);
             this.expressionProcessingService.AddOrderBy(orderBy);
