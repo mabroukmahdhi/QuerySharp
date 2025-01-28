@@ -29,11 +29,9 @@ namespace QuerySharp.Services.Expressions
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
-            //queryBuilder.Append("(");
             Visit(node.Left);
             queryBuilder.Append($" {GetODataOperator(node.NodeType)} ");
             Visit(node.Right);
-            //queryBuilder.Append(")");
 
             return node;
         }

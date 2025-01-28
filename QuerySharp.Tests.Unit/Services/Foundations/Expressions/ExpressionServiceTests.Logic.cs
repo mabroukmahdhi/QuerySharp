@@ -18,7 +18,7 @@ namespace QuerySharp.Tests.Unit.Services.Expressions
             Expression<Func<SomeModel, bool>> expression =
                 someModel => someModel.Id == 5;
 
-            string expectedExpression = "(Id eq 5)";
+            string expectedExpression = "Id eq 5";
 
             // when
             string actualQuery =
