@@ -6,7 +6,7 @@ using Xeptions;
 
 namespace QuerySharp.Models.Expressions.Exceptions
 {
-    public class NullExpressionException : Xeption
+    internal class NullExpressionException : Xeption
     {
         public NullExpressionException(string message)
             : base(message)

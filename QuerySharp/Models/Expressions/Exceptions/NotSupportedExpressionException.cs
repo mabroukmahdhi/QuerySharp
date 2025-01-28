@@ -6,7 +6,7 @@ using System;
 
 namespace QuerySharp.Models.Expressions.Exceptions
 {
-    public class NotSupportedExpressionException : Exception
+    internal class NotSupportedExpressionException : Exception
     {
         public NotSupportedExpressionException(string message) : base(message)
         {

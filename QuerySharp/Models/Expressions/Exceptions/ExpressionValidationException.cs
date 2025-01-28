@@ -6,7 +6,7 @@ using Xeptions;
 
 namespace QuerySharp.Models.Expressions.Exceptions
 {
-    public class ExpressionValidationException : Xeption
+    internal class ExpressionValidationException : Xeption
     {
         public ExpressionValidationException(string message, Xeption innerException)
             : base(message, innerException)
