@@ -3,12 +3,42 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>disable</Nullable>
+		<Nullable>disable</Nullable> 
+		<PackageId>QuerySharp</PackageId>
+		<Version>0.1.0</Version>
+		<Authors>Mabrouk Mahdhi</Authors>
+		<Copyright>Mabrouk Mahdhi</Copyright>
+		<Description>QuerySharp is a modern, fluent library for building OData queries in C#.</Description>
+		<PackageTags>OData Query Builder</PackageTags>
+		<RepositoryUrl>https://github.com/mabroukmahdhi/QuerySharp</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/mabroukmahdhi/QuerySharp</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>ic_builder.png</PackageIcon>
+		<PackageReleaseNotes>First release</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="QuerySharp.Tests.Unit" />
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\ic_builder.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
