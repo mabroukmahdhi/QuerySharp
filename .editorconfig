@@ -7,7 +7,7 @@ guidelines = 120
 #### Core EditorConfig Options ####
 
 #Formatting - header template
-file_header_template = ---------------------------------------------------------------\nCopyright (c) Mabrouk Mahdhi 2024. All rights reserved.\n---------------------------------------------------------------
+file_header_template = ---------------------------------------------------------------\nCopyright (c) Mabrouk Mahdhi 2025. All rights reserved.\n---------------------------------------------------------------
 
 # Indentation and spacing
 indent_size = 4
