@@ -2,6 +2,7 @@
 // Copyright (c) Mabrouk Mahdhi 2025. All rights reserved.
 // ---------------------------------------------------------------
 
+using System.IO;
 using ADotNet.Clients.Builders;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 
