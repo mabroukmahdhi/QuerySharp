@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// Copyright (c) Mabrouk Mahdhi 2024. All rights reserved.
+// Copyright (c) Mabrouk Mahdhi 2025. All rights reserved.
 // ---------------------------------------------------------------
 
 namespace QuerySharp.Tests.Manual.Models.Products

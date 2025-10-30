@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// Copyright (c) Mabrouk Mahdhi 2024. All rights reserved.
+// Copyright (c) Mabrouk Mahdhi 2025. All rights reserved.
 // ---------------------------------------------------------------
 
 using Xeptions;
@@ -10,7 +10,6 @@ namespace QuerySharp.Models.Expressions.Exceptions
     {
         public ExpressionValidationException(string message, Xeption innerException)
             : base(message, innerException)
-        {
-        }
+        { }
     }
 }
