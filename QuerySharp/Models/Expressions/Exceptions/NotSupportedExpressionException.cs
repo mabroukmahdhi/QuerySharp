@@ -9,7 +9,6 @@ namespace QuerySharp.Models.Expressions.Exceptions
     internal class NotSupportedExpressionException : Exception
     {
         public NotSupportedExpressionException(string message) : base(message)
-        {
-        }
+        { }
     }
 }

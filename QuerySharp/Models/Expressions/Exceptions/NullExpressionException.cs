@@ -10,12 +10,10 @@ namespace QuerySharp.Models.Expressions.Exceptions
     {
         public NullExpressionException(string message)
             : base(message)
-        {
-        }
+        { }
 
         public NullExpressionException(string message, Xeption innerException)
             : base(message, innerException)
-        {
-        }
+        { }
     }
 }

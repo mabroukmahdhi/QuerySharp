@@ -10,7 +10,6 @@ namespace QuerySharp.Models.Expressions.Exceptions
     {
         public ExpressionValidationException(string message, Xeption innerException)
             : base(message, innerException)
-        {
-        }
+        { }
     }
 }
