@@ -95,29 +95,21 @@ string full = QueryBuilder<Product>.Start()
 
 All APIs are available via the generic `QueryBuilder<T>`.
 
-- `static QueryBuilder<T> Start()`
- - Starts a new builder instance.
+- `static QueryBuilder<T> Start()`: Starts a new builder instance.
 
-- `QueryBuilder<T> Filter(Expression<Func<T, bool>> predicate)`
- - Adds a `$filter` clause. Multiple calls are combined with `and`.
+- `QueryBuilder<T> Filter(Expression<Func<T, bool>> predicate)`: Adds a `$filter` clause. Multiple calls are combined with `and`.
 
-- `QueryBuilder<T> OrderBy(Expression<Func<T, object>> keySelector)`
- - Adds an ascending `$orderby` clause.
+- `QueryBuilder<T> OrderBy(Expression<Func<T, object>> keySelector)`: Adds an ascending `$orderby` clause.
 
-- `QueryBuilder<T> OrderByDescending(Expression<Func<T, object>> keySelector)`
- - Adds a descending `$orderby` clause.
+- `QueryBuilder<T> OrderByDescending(Expression<Func<T, object>> keySelector)`: Adds a descending `$orderby` clause.
 
-- `QueryBuilder<T> Top(int count)`
- - Adds a `$top` (limit) clause.
+- `QueryBuilder<T> Top(int count)`: Adds a `$top` (limit) clause.
 
-- `QueryBuilder<T> Skip(int count)`
- - Adds a `$skip` (offset) clause.
+- `QueryBuilder<T> Skip(int count)`: Adds a `$skip` (offset) clause.
 
-- `QueryBuilder<T> Expand<TProperty>(Expression<Func<T, TProperty>> navigationProperty)`
- - Adds an `$expand` for the given navigation property. Supports nested member access and collection filters (`Where`).
+- `QueryBuilder<T> Expand<TProperty>(Expression<Func<T, TProperty>> navigationProperty)`: Adds an `$expand` for the given navigation property. Supports nested member access and collection filters (`Where`).
 
-- `string Build()`
- - Produces the final query string without a leading `?` and with `&` between segments.
+- `string Build()`: Produces the final query string without a leading `?` and with `&` between segments.
 
 
 ## Supported expressions
