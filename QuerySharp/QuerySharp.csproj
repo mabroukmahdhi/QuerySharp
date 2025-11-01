@@ -5,7 +5,7 @@
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable> 
 		<PackageId>QuerySharp</PackageId>
-		<Version>0.1.0</Version>
+		<Version>0.1.1</Version>
 		<Authors>Mabrouk Mahdhi</Authors>
 		<Copyright>Mabrouk Mahdhi</Copyright>
 		<Description>QuerySharp is a modern, fluent library for building OData queries in C#.</Description>
@@ -17,7 +17,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>ic_builder.png</PackageIcon>
-		<PackageReleaseNotes>First release</PackageReleaseNotes>
+		<PackageReleaseNotes>Fixing issues in .Contains builder.</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
