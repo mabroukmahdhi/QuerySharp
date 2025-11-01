@@ -38,12 +38,20 @@ namespace QuerySharp.Services.Expressions
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            if (IsCapturedValue(node))
+            {
+                object value = Evaluate(node);
+                AppendConstant(value);
+                return node;
+            }
+
             if (node.Expression is MemberExpression parent)
             {
                 Visit(parent);
                 queryBuilder.Append('/');
             }
 
+            // When the expression is the parameter itself, just append the member name.
             queryBuilder.Append(node.Member.Name);
 
             return node;
@@ -51,15 +59,7 @@ namespace QuerySharp.Services.Expressions
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            if (node.Type == typeof(string))
-            {
-                queryBuilder.Append($"'{node.Value}'");
-            }
-            else
-            {
-                queryBuilder.Append(node.Value);
-            }
-
+            AppendConstant(node.Value);
             return node;
         }
 
@@ -138,6 +138,46 @@ namespace QuerySharp.Services.Expressions
                     return "or";
                 default:
                     throw new NotSupportedException($"Operator {expressionType} is not supported.");
+            }
+        }
+
+        private static bool IsCapturedValue(MemberExpression node)
+        {
+            // Walk up to the root expression; if it's a ConstantExpression, the member is coming from a closure/captured variable.
+            Expression current = node;
+            while (current is MemberExpression m)
+            {
+                current = m.Expression;
+            }
+
+            return current is ConstantExpression || current == null; // null can be static member
+        }
+
+        private static object Evaluate(Expression expression)
+        {
+            // Compile a lambda to evaluate the expression to a runtime value.
+            var objectMember = Expression.Convert(expression, typeof(object));
+            var getterLambda = Expression.Lambda<Func<object>>(objectMember);
+            var getter = getterLambda.Compile();
+            return getter();
+        }
+
+        private void AppendConstant(object value)
+        {
+            switch (value)
+            {
+                case null:
+                    queryBuilder.Append("null");
+                    break;
+                case string s:
+                    queryBuilder.Append($"'{s}'");
+                    break;
+                case bool b:
+                    queryBuilder.Append(b ? "true" : "false");
+                    break;
+                default:
+                    queryBuilder.Append(value);
+                    break;
             }
         }
     }
