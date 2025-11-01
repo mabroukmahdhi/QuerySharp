@@ -122,5 +122,38 @@ namespace QuerySharp.Tests.Unit.Services.Processings.Expressions
             // then
             actualQuery.Should().Be(expectedQuery);
         }
+
+        [Fact]
+        public void ShouldBuildCompleteQueryWithContainsOperation()
+        {
+            // given 
+            Expression<Func<SomeModel, bool>> contains = x => x.Name.Contains("Mabrouk");
+            string expectedQuery = "$filter=contains(Name,'Mabrouk')";
+            this.expressionProcessingService.AddFilter(contains);
+
+            // when
+            string actualQuery =
+                this.expressionProcessingService.BuildQuery();
+
+            // then
+            actualQuery.Should().Be(expectedQuery);
+        }
+
+        [Fact]
+        public void ShouldBuildCompleteQueryWithContainsOperationWithVariable()
+        {
+            // given 
+            string namePart = "Mabrouk";
+            Expression<Func<SomeModel, bool>> contains = x => x.Name.Contains(namePart);
+            string expectedQuery = "$filter=contains(Name,'Mabrouk')";
+            this.expressionProcessingService.AddFilter(contains);
+
+            // when
+            string actualQuery =
+                this.expressionProcessingService.BuildQuery();
+
+            // then
+            actualQuery.Should().Be(expectedQuery);
+        }
     }
 }
